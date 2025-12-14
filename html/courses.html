@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courses</title>
+  <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-storage-compat.js"></script>
+
+  <!-- Firebase Auth -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/10.13.1/firebase-auth-compat.min.js"
+    integrity="sha512-b2PGOE6ClpdFR5WZylPqJ9NEtHyGtdXKIe5wI0qRKVg3VeH9Km8CvihpnySwf6v21TV2cMTUp/BuglUiFLB38Q=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+    <style>
+
+      /* RESET */
+      * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+      }
+
+      body {
+          background: #f4f6f9;
+          color: #222;
+          line-height: 1.6;
+      }
+
+      /* NAV */
+      nav {
+          width: 100%;
+          background: #0a3d62;
+          color: white;
+          padding: 12px 40px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+      }
+
+      nav h1 {
+          font-size: 30px;
+          font-weight: bold;
+      }
+
+      nav ul {
+          display: flex;
+          gap: 25px;
+          list-style: none;
+      }
+
+      nav ul li a {
+          text-decoration: none;
+          color: #fff;
+          transition: 0.3s;
+          font-size: 20px;
+      }
+
+      nav ul li a:hover {
+          color: #f1c40f;
+      }
+
+      /* PAGE TITLE */
+      #courses {
+          width: 90%;
+          margin: 40px auto;
+      }
+
+      #courses h2 {
+          font-size: 35px;
+          margin-bottom: 15px;
+      }
+
+      /* CATEGORY BLOCK */
+      .category-block {
+          margin-bottom: 40px;
+      }
+
+      .category-block h3 {
+          font-size: 22px;
+          margin-bottom: 15px;
+          color: #0a3d62;
+          border-left: 5px solid #0a3d62;
+          padding-left: 10px;
+      }
+
+      /* GRID */
+      .video-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+          gap: 18px;
+      }
+
+      /* VIDEO CARD */
+      .video-card {
+          background: #fff;
+          border-radius: 10px;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+          padding: 12px;
+          transition: 0.25s;
+      }
+
+      .video-card img {
+          width: 100%;
+          height: 150px;
+          border-radius: 8px;
+          object-fit: cover;
+      }
+
+      .video-card p {
+          margin: 10px 0;
+          font-size: 15px;
+          height: 40px;
+          overflow: hidden;
+      }
+
+      /* Button */
+      .video-card .btn {
+          display: inline-block;
+          background: #0a3d62;
+          color: white;
+          padding: 8px 14px;
+          border-radius: 6px;
+          text-decoration: none;
+          transition: 0.3s;
+          font-size: 14px;
+      }
+
+      .video-card .btn:hover {
+          background: #1e6bb8;
+      }
+
+      /* CARD HOVER EFFECT */
+      .video-card:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      }
+
+      /*footer*/
+      footer {
+        text-align: center;
+        padding: 20px;
+        background: #0a3d62;
+        color: white;
+        margin-top: 40px;
+      }
+
+      /*search*/
+      .search-box {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 30px auto;
+        gap: 10px;
+      }
+
+      .search-box input {
+        width: 350px;
+        padding: 12px 15px;
+        font-size: 16px;
+        border: 2px solid #ddd;
+        border-radius: 8px;
+        outline: none;
+        transition: 0.3s;
+      }
+
+      .search-box input:focus {
+        border-color: #4CAF50;
+        box-shadow: 0 0 8px rgba(76, 175, 80, 0.3);
+      }
+
+      .search-box button {
+        padding: 12px 20px;
+        font-size: 16px;
+        background: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      .search-box button:hover {
+        background: #43a047;
+        transform: translateY(-2px);
+      }
+
+      .search-box button:active {
+        transform: translateY(0);
+      }
+
+      /*video*/
+      .title {
+          text-align: center;
+          margin-bottom: 20px;
+          font-size: 32px;
+          font-weight: 700;
+          color: #1a1a1a;
+      }
+
+      /* CATEGORY BUTTONS */
+      .category-bar {
+          display: flex;
+          justify-content: center;
+          gap: 12px;
+          margin-bottom: 35px;
+      }
+
+      .cat-btn {
+          padding: 8px 16px;
+          border-radius: 8px;
+          border: 1px solid #d0d0d0;
+          background: #fff;
+          cursor: pointer;
+          font-size: 14px;
+          transition: 0.2s;
+      }
+
+      .cat-btn:hover {
+          background: #eaeaea;
+      }
+
+      .cat-btn.active {
+          background: #2d75f5;
+          color: white;
+          border-color: #2d75f5;
+      }
+
+      /* COURSE LIST */
+      .course-list {
+          max-width: 900px;
+          margin: auto;
+          display: flex;
+          flex-direction: column;
+          gap: 26px;
+      }
+
+      .course-card {
+          background: white;
+          border-radius: 14px;
+          padding: 18px;
+          display: flex;
+          gap: 20px;
+          border: 1px solid #e3e3e3;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+      }
+
+      .course-thumb {
+          width: 260px;
+          height: 150px;
+          border-radius: 12px;
+          object-fit: cover;
+      }
+
+      .course-info {
+          flex: 1;
+      }
+
+      .course-title {
+          font-size: 20px;
+          font-weight: 700;
+          margin-bottom: 6px;
+      }
+
+      .course-desc {
+          font-size: 14px;
+          color: #5a5a5a;
+          margin-bottom: 10px;
+      }
+
+      .course-vid iframe {
+          width: 250px;
+          height: 140px;
+          border-radius: 10px;
+      }
+
+      .btn {
+          display: inline-block;
+          margin-top: 10px;
+          background: #2d75f5;
+          padding: 8px 14px;
+          color: white;
+          border-radius: 6px;
+          text-decoration: none;
+          font-size: 14px;
+      }
+
+      .btn:hover {
+          background: #1a57c7;
+      }
+    </style>
+</head>
+<body>
+    <nav>
+        <h1 class="">CodeLearn</h1>
+        <ul>
+            <li><a href="index.html">Trang chủ</a></li>
+            <li><a href="courses.html">Khóa học</a></li>
+            <li><a href="my-courses.html">Khóa học của tôi</a></li>
+            <li><a href="login.html">Đăng nhập</a></li>
+        </ul>
+    </nav>
+
+  <section id="courses">
+    <h1 class="title">Danh sách khóa học lập trình</h1>
+    <div class="category-bar">
+        <button class="cat-btn active" data-cat="all">Tất cả</button>
+        <button class="cat-btn" data-cat="python">Python</button>
+        <button class="cat-btn" data-cat="javascript">JavaScript</button>
+        <button class="cat-btn" data-cat="html&css">HTML & CSS</button>
+        <button class="cat-btn" data-cat="c++">C++</button>
+    </div>
+    <!-- <div class="search-box">
+      <input type="text" id="searchInput" placeholder="Tìm khóa học (vd: Python, JavaScript,...)">
+      <button id="searchBtn">Tìm</button>
+    </div> -->
+    <div id="course-list" class="course-list"></div>
+  </section>
+
+  <footer>
+    © 2025 CodeLearn - Học lập trình trực tuyến
+  </footer> 
+  <script src="../js/firebase-config.js"></script>
+  <script src="../js/courses.js"></script>
+  
+</body>
+</html>

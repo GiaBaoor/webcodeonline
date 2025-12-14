@@ -1,0 +1,31 @@
+{
+	"folders": [
+		{
+			"name": "JS",
+			"path": "../../../Downloads/ONTAP-PPT/ONTAP-PPT/PART11/JS"
+		},
+		{
+			"name": "pokemon",
+			"path": "../../../Downloads/ONTAP-PPT/ONTAP-PPT/pokemon/pokemon"
+		},
+		{
+			"name": "JSI",
+			"path": "../../../Downloads/ONTAP-PPT/ONTAP-PPT/JSI"
+		},
+		{
+			"name": "SPCK",
+			"path": ".."
+		},
+		{
+			"name": "server",
+			"path": "../../../OneDrive/server"
+		},
+		{
+			"name": "client",
+			"path": "../../../OneDrive/client"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "JSI"
+	}
+}
