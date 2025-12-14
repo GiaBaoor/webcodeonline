@@ -28,6 +28,12 @@ function renderCourses(list) {
 
         <div class="course-info">
             <div class="course-title">${c.title}</div>
+
+            <div class="course-meta">
+              <span class="level ${c.level.toLowerCase()}">${c.level}</span>
+              <span class="price">${formatPrice(c.price)}</span>
+            </div>
+
             <div class="course-desc">${c.description}</div>
 
             <div class="course-vid">
@@ -42,6 +48,11 @@ function renderCourses(list) {
 
     container.innerHTML += card;
   });
+}
+
+function formatPrice(price) {
+  if (!price || price === 0) return "Miễn phí";
+  return price.toLocaleString("vi-VN") + " ₫";
 }
 
 // Category filtering
