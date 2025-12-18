@@ -18,7 +18,7 @@
       }
 
       /*nav bar*/
-      nav {
+      nav{
         width: 100%;
         background: #0a3d62;
         padding: 15px 40px;
@@ -43,17 +43,31 @@
         gap: 25px;
       }
 
-      nav ul li a {
+      nav ul li a{
         text-decoration: none;
         color: #dfe6e9;
         font-size: 20px;
         transition: 0.3s;
       }
 
-      nav ul li a:hover {
+      nav ul li a:hover,
+      nav #logoutBtn:hover {
         color: #74b9ff;
       }
 
+      #logoutBtn {
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        outline: none;
+        font-family: inherit;
+        text-decoration: none;
+        color: #dfe6e9;
+        font-size: 20px;
+        transition: 0.3s;
+        padding: 4px 1px;
+        margin-left: -25px;
+      }
       /*header*/
       .header {
         width: 100%;
@@ -112,7 +126,10 @@
             <li><a href="index.html">Trang chủ</a></li>
             <li><a href="courses.html">Khóa học</a></li>
             <li><a href="my-courses.html">Khóa học của tôi</a></li>
-            <li><a href="login.html">Đăng nhập</a></li>
+            <li><a href="login.html" id="loginBtn">Đăng nhập</a></li>
+            <li>
+              <button id="logoutBtn" class="nav-link logout-btn" style="display:none;">Đăng xuất</button>
+            </li>
         </ul>
   </nav>
 
@@ -125,5 +142,11 @@
   <footer>
     © 2025 CodeLearn - Học lập trình trực tuyến
   </footer>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-storage-compat.js"></script>
+    <script src="../js/firebase-config.js"></script>
+    <script src="../js/trangchu.js"></script>
 </body>
 </html>

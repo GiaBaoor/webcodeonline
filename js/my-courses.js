@@ -12,11 +12,11 @@ firebase.auth().onAuthStateChanged(user => {
 
       const data = doc.data();
 
-      // Chặn admin
-      if (data.role === "admin") {
-        window.location.href = "admin.html";
-        return;
-      }
+      // // Chặn admin
+      // if (data.role === "admin") {
+      //   window.location.href = "admin.html";
+      //   return;
+      // }
 
       loadMyCourses(data.myCourses);
     });

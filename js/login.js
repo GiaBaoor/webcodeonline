@@ -6,6 +6,7 @@ document.getElementById("loginBtn").addEventListener("click", function (e) {
   const password = document.getElementById("password").value;
     auth.signInWithEmailAndPassword(email, password)
     .then((userCredential) => {
+      localStorage.setItem("userId", userCredential.uid);
       // const uid = userCredential.user.uid;
 
       // Lấy role từ Firestore
@@ -24,10 +25,11 @@ document.getElementById("loginBtn").addEventListener("click", function (e) {
           //   window.location.href = "my-courses.html";
           // }
         // });
+        alert("Đăng nhập thành công!");
         window.location.href = "../html/trangchu.html";
     })
     .catch(error => {
-      errorEl.innerText = error.message;
+      alert("Lỗi đăng nhập: " + error.message);
     });
 })
 

@@ -22,6 +22,7 @@ document.getElementById("registerBtn").addEventListener("click", function (){
                 //             alert("Lưu role vào Firestore thất bại: " + err.message);
                 //         });
                 // });
+                alert(`Đăng ký thành công! Bạn có thể đăng nhập ngay bây giờ.`);
                 window.location.href = "../html/login.html"
             })
             .catch(error => {
