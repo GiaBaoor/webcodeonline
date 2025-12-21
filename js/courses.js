@@ -40,7 +40,8 @@ function renderCourses(list) {
                 <iframe src="${c.youtubeUrl}" allowfullscreen></iframe>
             </div>
 
-            <a class="btn" href="course.html?id=${c.id}">Xem chi tiết</a>
+            <a class="btn" href="course-detail.html?id=${c.id}">Xem chi tiết</a>
+            <button class="btn-buy" data-id="${c.id}">Mua khóa học</button>
         </div>
 
       </div>
@@ -71,3 +72,34 @@ catBtns.forEach(btn => {
     }
   });
 });
+
+// Button buy course
+container.addEventListener("click", e => {
+  if (e.target.classList.contains("btn-buy")) {
+    const courseId = e.target.dataset.id;
+    const userId = localStorage.getItem("userId");
+
+    if (!userId) {
+      alert("Vui lòng đăng nhập để mua khóa học.");
+      window.location.href = "login.html";
+      return;
+    } 
+    // check đã mua khóa học chưa
+    const existed = db.collection("user_courses")
+     .where("userId", "==", userId)
+      .where("courseId", "==", courseId)
+      .get()
+      .then(snapshot => {
+        if (!snapshot.empty) {
+          alert("Bạn đã mua khóa học này rồi.");
+          return;
+        }
+    // Lưu mua khoá học
+        db.collection("user_courses").add({
+          userId: userId,
+          courseId: courseId,
+          boughtAt: firebase.firestore.FieldValue.serverTimestamp()
+        })
+        alert("Mua khóa học thành công!");
+    })
+}});

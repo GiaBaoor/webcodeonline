@@ -1,32 +1,27 @@
+document.getElementById("registerBtn").addEventListener("click", async function () {
+  const email = document.getElementById("email").value.trim();
+  const pass = document.getElementById("password").value.trim();
 
-document.getElementById("registerBtn").addEventListener("click", function (){
-    const email = document.getElementById("email").value;
-    const pass = document.getElementById("password").value;
-    auth.createUserWithEmailAndPassword(email, pass)
-            .then(userCredential => {
-                const user = userCredential.user;
-                // Cập nhật displayName
-                // user.updateProfile({ displayName: userName }).then(() => {
-                //     // Lưu role vào Firestore
-                //     firebase.firestore().collection("users").doc(user.uid).set({
-                //         email: email,
-                //         username: userName,
-                //         role: role,
-                //         createdAt: firebase.firestore.FieldValue.serverTimestamp()
-                //     })
-                //         .then(() => {
-                //             alert(`Đăng ký thành công! Chào ${userName} (${role})`);
-                //             window.location.href = "/Client/html/login.html"
-                //         })
-                //         .catch(err => {
-                //             alert("Lưu role vào Firestore thất bại: " + err.message);
-                //         });
-                // });
-                alert(`Đăng ký thành công! Bạn có thể đăng nhập ngay bây giờ.`);
-                window.location.href = "../html/login.html"
-            })
-            .catch(error => {
-                alert("Lỗi đăng ký: " + error.message);
-            });
+  if (!email || !pass) {
+    alert("Vui lòng nhập email và mật khẩu");
+    return;
+  }
 
-})
+  try {
+    const userCredential = await auth.createUserWithEmailAndPassword(email, pass);
+    const user = userCredential.user;
+
+    await db.collection("users").doc(user.uid).set({
+      email: user.email,
+      role: "user",
+      createdAt: firebase.firestore.FieldValue.serverTimestamp()
+    });
+
+    alert("Đăng ký thành công! Bạn có thể đăng nhập.");
+    window.location.href = "../html/login.html";
+
+  } catch (error) {
+    console.error("Signup error:", error);
+    alert ( "Lỗi đăng ký" + error.message);
+  }
+});

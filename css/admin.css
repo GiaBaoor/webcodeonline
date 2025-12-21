@@ -1,0 +1,136 @@
+:root {
+  --primary: #2563eb;
+  --bg: #f8fafc;
+  --card: #ffffff;
+  --text: #1f2937;
+  --muted: #6b7280;
+  --danger: #ef4444;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 30px;
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* ===== HEADER ===== */
+h2 {
+  margin-top: 0;
+  color: var(--primary);
+}
+
+#logoutBtn {
+  background: none;
+  border: none;
+  color: var(--primary);
+  font-weight: 600;
+  font-size: 20px;
+  cursor: pointer;
+  float: right;
+}
+
+#logoutBtn:hover {
+  text-decoration: underline;
+}
+
+hr {
+  border: none;
+  height: 1px;
+  background: #e5e7eb;
+  margin: 30px 0;
+}
+
+/* ===== FORM ===== */
+#courseForm {
+  background: var(--card);
+  padding: 24px;
+  border-radius: 14px;
+  max-width: 640px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+}
+
+#courseForm input,
+#courseForm textarea {
+  width: 100%;
+  padding: 12px 14px;
+  margin-bottom: 12px;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  font-size: 14px;
+}
+
+#courseForm input:focus,
+#courseForm textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+#courseForm button {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 999px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+#courseForm button:hover {
+  opacity: 0.9;
+}
+
+/* ===== COURSE LIST ===== */
+#courseList {
+  margin-top: 20px;
+  max-width: 900px;
+}
+
+.course-item {
+  background: var(--card);
+  padding: 18px 20px;
+  border-radius: 14px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+  margin-bottom: 14px;
+}
+
+.course-item b {
+  font-size: 16px;
+}
+
+.course-item span {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.course-item button {
+  margin-top: 10px;
+  margin-right: 8px;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.course-item button:first-of-type {
+  background: #e0e7ff;
+  color: var(--primary);
+}
+
+.course-item button:last-of-type {
+  background: #fee2e2;
+  color: var(--danger);
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background: #0a3d62;
+    color: white;
+}

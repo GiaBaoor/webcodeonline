@@ -24,3 +24,22 @@ document.getElementById("logoutBtn").addEventListener("click", function () {
             alert("Lỗi đăng xuất: " + error.message);
         });
 });
+
+// load khóa học nổi bật
+db.collection("courses")
+  .limit(6)
+  .get()
+  .then(snapshot => {
+    const container = document.getElementById("featured-courses");
+    snapshot.forEach(doc => {
+      const c = doc.data();
+      container.innerHTML += `
+        <div class="course-card">
+          <img src="${c.thumbnail}">
+          <h3>${c.title}</h3>
+          <p>${c.level} • ${c.price.toLocaleString()}đ</p>
+          <a href="courses.html?id=${doc.id}">Xem chi tiết</a>
+        </div>
+      `;
+    });
+  });

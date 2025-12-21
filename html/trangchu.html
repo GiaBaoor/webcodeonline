@@ -4,120 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CodeLearn</title>
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-
-      body {
-        background: #f7f9fc;
-        color: #222;
-        line-height: 1.6;
-      }
-
-      /*nav bar*/
-      nav{
-        width: 100%;
-        background: #0a3d62;
-        padding: 15px 40px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        position: fixed;
-        top: 0;
-        left: 0;
-        z-index: 100;
-      }
-
-      nav h1 {
-        color: #fff;
-        font-size: 30px;
-        font-weight: bold;
-      }
-
-      nav ul {
-        display: flex;
-        list-style: none;
-        gap: 25px;
-      }
-
-      nav ul li a{
-        text-decoration: none;
-        color: #dfe6e9;
-        font-size: 20px;
-        transition: 0.3s;
-      }
-
-      nav ul li a:hover,
-      nav #logoutBtn:hover {
-        color: #74b9ff;
-      }
-
-      #logoutBtn {
-        background: transparent;
-        border: none;
-        cursor: pointer;
-        outline: none;
-        font-family: inherit;
-        text-decoration: none;
-        color: #dfe6e9;
-        font-size: 20px;
-        transition: 0.3s;
-        padding: 4px 1px;
-        margin-left: -25px;
-      }
-      /*header*/
-      .header {
-        width: 100%;
-        height: 80vh;
-        background: linear-gradient(to right, #0a3d62d3, #1e90ffd3),
-                    url("https://images.unsplash.com/photo-1555066931-4365d14bab8c");
-        background-size: cover;
-        background-position: center;
-        padding-top: 150px;
-        text-align: center;
-        color: white;
-      }
-
-      header h2 {
-        font-size: 40px;
-        margin-bottom: 10px;
-        font-weight: bold;
-      }
-
-      .header .btn {
-        display: inline-block;
-        padding: 12px 28px;
-        background: #74b9ff;
-        color: black;
-        font-size: 18px;
-        text-decoration: none;
-        border-radius: 5px;
-        transition: 0.3s;
-        font-weight: 600;
-      }
-
-      .header .btn:hover {
-        background: white;
-        color: #0a3d62;
-      }
-
-      header p {
-        font-size: 20px;
-        margin-bottom: 30px;
-      }
-
-      /*footer*/
-      footer {
-        text-align: center;
-        padding: 20px;
-        background: #0a3d62;
-        color: white;
-        margin-top: 40px;
-      }
-    </style>
+    <link rel="stylesheet" href="../css/trangchu.css">
 </head>
 <body>
     <nav>
@@ -138,6 +25,46 @@
     <p>Bắt đầu hành trình học code ngay hôm nay!</p>
     <a href="courses.html" class="btn">Xem khóa học</a>
   </header>
+
+  <section class="section">
+    <h2>Khóa học nổi bật</h2>
+    <div id="featured-courses" class="course-grid">
+       
+    </div>
+  </section>
+
+  <section class="section gray">
+    <h2>Danh mục</h2>
+    <div class="category-grid">
+      <div class="category-card">Python</div>
+      <div class="category-card">Web</div>
+      <div class="category-card">Frontend</div>
+      <div class="category-card">Backend</div>
+      <div class="category-card">AI / Data</div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Tại sao chọn CodeLearn?</h2>
+    <div class="feature-grid">
+      <div class="feature-card">🎥 Video chất lượng cao</div>
+      <div class="feature-card">🧠 Lộ trình rõ ràng</div>
+      <div class="feature-card">👨‍💻 Giảng viên thực tế</div>
+      <div class="feature-card">💼 Học để đi làm</div>
+    </div>
+  </section>
+
+  <section class="section gray">
+    <h2>Lộ trình học</h2>
+    <div class="path">
+      Beginner → Frontend → Backend → Fullstack
+    </div>
+  </section>
+
+  <section class="cta">
+    <h2>Bắt đầu học ngay hôm nay</h2>
+    <a href="signup.html" class="btn-primary">Đăng ký miễn phí</a>
+  </section>
 
   <footer>
     © 2025 CodeLearn - Học lập trình trực tuyến

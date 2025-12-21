@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Detail</title>
+    <link rel="stylesheet" href="../css/course-detail.css">
+  <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-storage-compat.js"></script>
+
+  <!-- Firebase Auth -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/10.13.1/firebase-auth-compat.min.js"
+    integrity="sha512-b2PGOE6ClpdFR5WZylPqJ9NEtHyGtdXKIe5wI0qRKVg3VeH9Km8CvihpnySwf6v21TV2cMTUp/BuglUiFLB38Q=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <h1>CodeLearn</h1>
+        <ul>
+            <li><a href="trangchu.html">Trang chủ</a></li>
+            <li><a href="courses.html">Khóa học</a></li>
+            <li><a href="my-courses.html">Khóa học của tôi</a></li>
+        </ul>
+    </nav>
+
+<div class="container">
+
+  <div class="course-header">
+    <h1 id="course-title"></h1>
+
+    <div class="meta">
+      <span id="course-category"></span>
+      <span id="course-level"></span>
+      <span id="course-price"></span>
+    </div>
+  </div>
+
+  <div class="course-body">
+    <div class="course-left">
+      <p id="course-description"></p>
+
+      <div id="video-box"></div>
+    </div>
+
+    <div class="course-right">
+      <button id="buyBtn" class="btn-primary">Mua khóa học</button>
+      <button id="learnBtn" class="btn-success" style="display:none;">
+        Vào học
+      </button>
+    </div>
+  </div>
+</div>
+  <footer>
+    © 2025 CodeLearn - Học lập trình trực tuyến
+  </footer>
+  <script src="../js/firebase-config.js"></script>
+  <script src="../js/course-detail.js"></script>
+</body>
+</html>

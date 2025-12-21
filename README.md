@@ -11,4 +11,3 @@ cách dùng github:
 
     + pull code: (lấy lịch sử code mới nhất từ github về máy)
        git pull origin main
-    
